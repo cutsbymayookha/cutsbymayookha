@@ -1,0 +1,85 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Legacy filename redirects (prevent cached or bookmarked URLs from breaking)
+[[redirects]]
+  from = "/%20The%20Write%20Take%20Design%201.jpeg"
+  to = "/the-write-take-design-1.jpeg"
+  status = 301
+
+[[redirects]]
+  from = "/The%20Write%20Take%20Design%201.jpeg"
+  to = "/the-write-take-design-1.jpeg"
+  status = 301
+
+[[redirects]]
+  from = "/%20The%20Write%20Take%20Design%202.jpg"
+  to = "/the-write-take-design-2.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/The%20Write%20Take%20Design%202.jpg"
+  to = "/the-write-take-design-2.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/%20The%20Write%20Take%20Design%203.jpg"
+  to = "/the-write-take-design-3.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/The%20Write%20Take%20Design%203.jpg"
+  to = "/the-write-take-design-3.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/%20The%20Write%20Take%20Design%204.jpg"
+  to = "/the-write-take-design-4.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/The%20Write%20Take%20Design%204.jpg"
+  to = "/the-write-take-design-4.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/%20The%20Write%20Take%20Design%205.jpg"
+  to = "/the-write-take-design-5.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/The%20Write%20Take%20Design%205.jpg"
+  to = "/the-write-take-design-5.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/%20The%20Write%20Take%20Design%206.jpg"
+  to = "/the-write-take-design-6.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/The%20Write%20Take%20Design%206.jpg"
+  to = "/the-write-take-design-6.jpg"
+  status = 301
+
+[[redirects]]
+  from = "/%20The%20Write%20Take%20Design%207.jpeg"
+  to = "/the-write-take-design-7.jpeg"
+  status = 301
+
+[[redirects]]
+  from = "/The%20Write%20Take%20Design%207.jpeg"
+  to = "/the-write-take-design-7.jpeg"
+  status = 301
+
+[[redirects]]
+  from = "/Resume.Pdf"
+  to = "/resume.pdf"
+  status = 301
+
+# SPA fallback for client-side routing and shared-design query URLs
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
