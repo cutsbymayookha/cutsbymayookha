@@ -1,0 +1,44 @@
+# Hostinger (Apache / LiteSpeed) Production Configuration
+# Ensures proper MIME types, inline PDF previewing, and SPA routing
+
+<IfModule mod_mime.c>
+  AddType application/pdf .pdf
+  AddType text/javascript .js .mjs
+  AddType application/wasm .wasm
+  AddType image/webp .webp
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Serve PDF files inline with application/pdf and allow same-origin iframe/object embedding
+  <FilesMatch "\.(?i:pdf)$">
+    Header set Content-Type "application/pdf"
+    Header set Content-Disposition "inline"
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+  </FilesMatch>
+
+  # Ensure ES module worker files (.mjs) have a strict-spec-compliant JavaScript MIME type
+  <FilesMatch "\.mjs$">
+    Header set Content-Type "text/javascript; charset=utf-8"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Normalize any legacy /resume.pdf or case variation of /resume pdf.pdf to /Resume PDF.pdf
+  RewriteRule ^resume(?:\s+pdf)?\.pdf$ "/Resume PDF.pdf" [L,NC]
+
+  # Serve existing files and directories directly without rewriting to index.html
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Never rewrite missing static asset requests (.pdf, .mjs, .js, .css, images, fonts) to index.html
+  RewriteRule \.(?:pdf|mjs|js|css|jpe?g|png|webp|gif|svg|ico|woff2?|ttf|eot|map)$ - [L,NC]
+
+  # SPA fallback for client-side navigation routes and shared design query links
+  RewriteRule ^ index.html [L]
+</IfModule>
